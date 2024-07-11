@@ -30,11 +30,13 @@ brew install fd fzf grep xargs
 
 The script assumes many things.
 
+- Files that are ignored include `.gitignore`'d files in each git repo, `package-lock.json`.
 - If your sketchbook has a different structure, update the way it should find matching folders. In my case, all my sketches are in a timestamped (YYMMDD) folder so this filter works for me - `grep -Eo ".*/[0-9]{6}[^/]*"`.
 - Generated folder name is hardcoded as `xlinks-YYMMDD-HH.MM.SS`. This is to avoid overwriting existing folder.
 
 ## To dos
 
+- [ ] Only matching folders start with `YYMMDD` is too limiting and not applicable in many situations.
 - [ ] Improve matching process. Currently, it is blocking due to file content search.
 - [ ] Search by file type. ex. `--filetype md`
 - [ ] Search by included package. ex. `--pkg ssam`
