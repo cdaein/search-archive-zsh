@@ -17,7 +17,8 @@ brew install fd fzf grep xargs
 ## How to use
 
 - Run `./search-archive.sh <search dir> <search pattern>`
-  - For example, to search for p5 keyword in the `./sketches` directory, `./search-archive.sh ./sketches p5`
+  - For example, to search for `p5` keyword in the `./sketches` directory:
+    - `./search-archive.sh ./sketches p5`
   - If it says no permission, update the execute permission: `chmod +x search-archive.sh`
 - If there are any matches, you are presented with interactive screen provided by `fzf`.
   - Navigate with arrow keys.
@@ -27,7 +28,10 @@ brew install fd fzf grep xargs
 
 ## Customization
 
-The script assumes many things. If your sketchbook has a different structure, update the way it should find matching folders. In my case, all my sketches are in a timestamped (YYMMDD) folder so this filter works - `grep -Eo ".*/[0-9]{6}[^/]*"`. Generated folder name is hardcoded into `xlinks-YYMMDD-HH.MM.SS`. This is to avoid overwriting existing folder.
+The script assumes many things.
+
+- If your sketchbook has a different structure, update the way it should find matching folders. In my case, all my sketches are in a timestamped (YYMMDD) folder so this filter works for me - `grep -Eo ".*/[0-9]{6}[^/]*"`.
+- Generated folder name is hardcoded as `xlinks-YYMMDD-HH.MM.SS`. This is to avoid overwriting existing folder.
 
 ## To dos
 
