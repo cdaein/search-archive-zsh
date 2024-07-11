@@ -59,15 +59,12 @@ search() {
   local current_datetime=$(date +"%y%m%d-%H.%M.%S")
   local target_dir="xlinks-$current_datetime"
 
-  # If target dir is not empty, warn and exit. (safety first)
+  # If target dir is not empty, warn and exit. (ver unlikely because of timestamping, but safety first)
   if [[ -d "$target_dir" ]]; then
     if [ "$(ls -A "$target_dir")" ]; then
       echo "$(print_color "33" "Warning:") Target directory is not empty."
       exit 1
     fi
-  else
-    # if target_dir non-existent (most likely), create one
-    mkdir "$target_dir"
   fi
 
   # REVIEW: finding matches happen first so it is blocking when it is time for `fzf`.
@@ -77,6 +74,13 @@ search() {
   if [ ${#selection} -eq 0 ]; then
     echo "No selection found"
     exit 1
+  fi
+
+  # At this point, there is a selection.
+  # If target dir doesn't exist, create one.
+  if [[ ! -d "$target_dir" ]]; then
+    echo "Creating the output folder' $(basename "$target_dir")'"
+    mkdir "$target_dir"
   fi
 
   for item in ${(@f)selection}; do
