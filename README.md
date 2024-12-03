@@ -37,6 +37,7 @@ The script assumes many things.
 ## To dos
 
 - [ ] Only matching folders start with `YYMMDD` is too limiting and not applicable in many situations.
+  - One option is to look at the immediate children of the search dir. This still won't work if there are nested children.
 - [ ] Improve matching process. Currently, it is blocking due to file content search.
 - [ ] Search by file type. ex. `--filetype md`
 - [ ] Search by included package. ex. `--pkg ssam`
